@@ -5,5 +5,4 @@ public enum PassengerClass {
     FIRST_CLASS,
     BUSINESS_CLASS,
     ECONOMY_CLASS,
-    UNKNOWN_CLASS
 }

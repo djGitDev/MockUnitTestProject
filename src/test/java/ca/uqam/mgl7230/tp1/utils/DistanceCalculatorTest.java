@@ -22,8 +22,6 @@ class DistanceCalculatorTest {
     private static final double SYDNEY_LON = 151.2093;
 
 
-
-
     @InjectMocks
     private DistanceCalculator distanceCalculator;
 
@@ -47,7 +45,7 @@ class DistanceCalculatorTest {
         //when
         int actualDistance = distanceCalculator.calculate(flightInformation);
         //then
-        assertThat(actualDistance).isEqualTo(0);
+        assertThat(actualDistance).isZero();
     }
 
     @Test

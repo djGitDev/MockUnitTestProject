@@ -15,7 +15,6 @@ import java.util.Map;
 import static ca.uqam.mgl7230.tp1.model.passenger.PassengerClass.*;
 import static ca.uqam.mgl7230.tp1.model.passenger.PassengerKeyConstants.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -24,15 +23,16 @@ import static org.mockito.Mockito.verify;
 class PassengerServiceTest {
 
 
-    private static String PASSENGER_PASSPORT_EXEMPLE = "15435546";
-    private static String PASSENGER_NAME_EXEMPLE = "Martin Claire";
-    private static int PASSENGER_AGE_EXEMPLE = 48;
+    private static final String PASSENGER_PASSPORT_EXEMPLE = "15435546";
+    private static final String PASSENGER_NAME_EXEMPLE = "Martin Claire";
+    private static final int PASSENGER_AGE_EXEMPLE = 48;
 
-    private Passenger expectedPassengerFirstClass = new FirstClassPassenger(PASSENGER_PASSPORT_EXEMPLE, PASSENGER_NAME_EXEMPLE, PASSENGER_AGE_EXEMPLE, 530);
-    private Passenger expectedPassengerBusinessClass = new BusinessClassPassenger(PASSENGER_PASSPORT_EXEMPLE, PASSENGER_NAME_EXEMPLE, PASSENGER_AGE_EXEMPLE, 530);
-    private Passenger expectedPassengerEconomyClass = new EconomyClassPassenger(PASSENGER_PASSPORT_EXEMPLE, PASSENGER_NAME_EXEMPLE, PASSENGER_AGE_EXEMPLE, 530);
-
-
+    private final Passenger expectedPassengerFirstClass = new FirstClassPassenger(
+            PASSENGER_PASSPORT_EXEMPLE, PASSENGER_NAME_EXEMPLE, PASSENGER_AGE_EXEMPLE, 530);
+    private final Passenger expectedPassengerBusinessClass = new BusinessClassPassenger(
+            PASSENGER_PASSPORT_EXEMPLE, PASSENGER_NAME_EXEMPLE, PASSENGER_AGE_EXEMPLE, 530);
+    private final Passenger expectedPassengerEconomyClass = new EconomyClassPassenger(
+            PASSENGER_PASSPORT_EXEMPLE, PASSENGER_NAME_EXEMPLE, PASSENGER_AGE_EXEMPLE, 530);
 
     @InjectMocks
    private PassengerService passengerService;
@@ -56,25 +56,19 @@ class PassengerServiceTest {
         //given
         given(passengerData.get(PASSENGER_CLASS)).willReturn(FIRST_CLASS);
         given(distanceCalculator.calculate(flightInformation)).willReturn(530);
-
-
         //when
         Passenger actualPassenger = passengerService.createPassenger(flightInformation, passengerData);
-
         //then
         assertThat(actualPassenger).isEqualTo(expectedPassengerFirstClass);
     }
 
     @Test
-    void createBusnessClassPassenger() {
+    void createBusinessClassPassenger() {
         //given
         given(passengerData.get(PASSENGER_CLASS)).willReturn(BUSINESS_CLASS);
         given(distanceCalculator.calculate(flightInformation)).willReturn(530);
-
-
         //when
         Passenger actualPassenger = passengerService.createPassenger(flightInformation, passengerData);
-
         //then
         assertThat(actualPassenger).isEqualTo(expectedPassengerBusinessClass);
     }
@@ -84,11 +78,8 @@ class PassengerServiceTest {
         //given
         given(passengerData.get(PASSENGER_CLASS)).willReturn(ECONOMY_CLASS);
         given(distanceCalculator.calculate(flightInformation)).willReturn(530);
-
-
         //when
         Passenger actualPassenger = passengerService.createPassenger(flightInformation, passengerData);
-
         //then
         assertThat(actualPassenger).isEqualTo(expectedPassengerEconomyClass);
     }
@@ -96,13 +87,11 @@ class PassengerServiceTest {
     @Test
     void notCreatePassengerWithNotAssignedClass() {
         //given
-        given(passengerData.get(PASSENGER_CLASS)).willReturn(UNKNOWN_CLASS);
-
+        given(passengerData.get(PASSENGER_CLASS)).willReturn(null);
         //when
         Passenger actualPassenger = passengerService.createPassenger(flightInformation, passengerData);
-
         //then
-        assertThat(actualPassenger).isEqualTo(null);
-        verify(distanceCalculator, times(0)).calculate(flightInformation);  // Aucun appel ne doit être fait
+        assertThat(actualPassenger).isNull();
+        verify(distanceCalculator, times(0)).calculate(flightInformation);
     }
 }
