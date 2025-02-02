@@ -6,19 +6,27 @@ import ca.uqam.mgl7230.tp1.model.passenger.PassengerKeyConstants;
 
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class PassengerPromptService {
 
+    private static final Logger logger = Logger.getLogger(PassengerPromptService.class.getName());
+
+    private static final String ENTER_PASSPORT = "Enter Passenger passport: ";
+    private static final String ENTER_NAME = "Enter Passenger name: ";
+    private static final String ENTER_AGE = "Enter Passenger age: ";
+    private static final String ENTER_TYPE = "Enter a passenger type: write first for First Class, " +
+            "business for Business Class or " +
+            "economy for Economy Class";
+
     public Map<PassengerKeyConstants, Object> getPassengerData(Scanner scanner) {
-        System.out.println("Enter Passenger passport: ");
+        logger.info(ENTER_PASSPORT);
         String passengerPassport = scanner.nextLine();
-        System.out.println("Enter Passenger name: ");
+        logger.info(ENTER_NAME);
         String passengerName = scanner.nextLine();
-        System.out.println("Enter Passenger age: ");
+        logger.info(ENTER_AGE);
         int passengerAge = Integer.parseInt(scanner.nextLine());
-        System.out.println("Enter a passenger type: write first for First Class, " +
-                "business for Business Class or " +
-                "economy for Economy Class");
+        logger.info(ENTER_TYPE);
         String passengerType = scanner.nextLine();
 
         PassengerClass passengerClass = getPassengerClass(passengerType);
