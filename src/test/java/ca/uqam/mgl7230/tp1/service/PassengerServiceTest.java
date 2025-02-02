@@ -3,7 +3,6 @@ package ca.uqam.mgl7230.tp1.service;
 import ca.uqam.mgl7230.tp1.model.flight.FlightInformation;
 import ca.uqam.mgl7230.tp1.model.passenger.*;
 import ca.uqam.mgl7230.tp1.utils.DistanceCalculator;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -44,16 +43,14 @@ class PassengerServiceTest {
    @Mock
    private Map<PassengerKeyConstants, Object> passengerData;
 
-    @BeforeEach
-   void setUp() {
-       given(passengerData.get(PASSENGER_PASSPORT)).willReturn(PASSENGER_PASSPORT_EXEMPLE);
-       given(passengerData.get(PASSENGER_NAME)).willReturn(PASSENGER_NAME_EXEMPLE);
-       given(passengerData.get(PASSENGER_AGE)).willReturn(PASSENGER_AGE_EXEMPLE);
-   }
+
 
     @Test
     void createFirstClassPassenger() {
         //given
+        given(passengerData.get(PASSENGER_PASSPORT)).willReturn(PASSENGER_PASSPORT_EXEMPLE);
+        given(passengerData.get(PASSENGER_NAME)).willReturn(PASSENGER_NAME_EXEMPLE);
+        given(passengerData.get(PASSENGER_AGE)).willReturn(PASSENGER_AGE_EXEMPLE);
         given(passengerData.get(PASSENGER_CLASS)).willReturn(FIRST_CLASS);
         given(distanceCalculator.calculate(flightInformation)).willReturn(530);
         //when
@@ -65,6 +62,9 @@ class PassengerServiceTest {
     @Test
     void createBusinessClassPassenger() {
         //given
+        given(passengerData.get(PASSENGER_PASSPORT)).willReturn(PASSENGER_PASSPORT_EXEMPLE);
+        given(passengerData.get(PASSENGER_NAME)).willReturn(PASSENGER_NAME_EXEMPLE);
+        given(passengerData.get(PASSENGER_AGE)).willReturn(PASSENGER_AGE_EXEMPLE);
         given(passengerData.get(PASSENGER_CLASS)).willReturn(BUSINESS_CLASS);
         given(distanceCalculator.calculate(flightInformation)).willReturn(530);
         //when
@@ -76,6 +76,9 @@ class PassengerServiceTest {
     @Test
     void createEconomyClassPassenger() {
         //given
+        given(passengerData.get(PASSENGER_PASSPORT)).willReturn(PASSENGER_PASSPORT_EXEMPLE);
+        given(passengerData.get(PASSENGER_NAME)).willReturn(PASSENGER_NAME_EXEMPLE);
+        given(passengerData.get(PASSENGER_AGE)).willReturn(PASSENGER_AGE_EXEMPLE);
         given(passengerData.get(PASSENGER_CLASS)).willReturn(ECONOMY_CLASS);
         given(distanceCalculator.calculate(flightInformation)).willReturn(530);
         //when

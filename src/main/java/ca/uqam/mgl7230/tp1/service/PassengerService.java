@@ -17,41 +17,7 @@ public class PassengerService {
         this.distanceCalculator = distanceCalculator;
     }
 
-//    public Passenger createPassenger(FlightInformation flightInformation,
-//                                     Map<PassengerKeyConstants, Object> passengerData) {
-//        String passengerPassport = (String) passengerData.get(PassengerKeyConstants.PASSENGER_PASSPORT);
-//        String passengerName = (String) passengerData.get(PassengerKeyConstants.PASSENGER_NAME);
-//        int passengerAge = (int) passengerData.get(PassengerKeyConstants.PASSENGER_AGE);
-//        PassengerClass passengerClass = (PassengerClass) passengerData.get(PassengerKeyConstants.PASSENGER_CLASS);
-//
-//        Passenger passenger = null;
-//        boolean passengerFound = false;
-//        while (!passengerFound) {
-//            switch (passengerClass) {
-//                case FIRST_CLASS -> {
-//                    passenger = new FirstClassPassenger(passengerPassport, passengerName, passengerAge,
-//                            distanceCalculator.calculate(flightInformation));
-//                    passengerFound = true;
-//                }
-//                case BUSINESS_CLASS -> {
-//                    passenger = new BusinessClassPassenger(passengerPassport, passengerName, passengerAge,
-//                            distanceCalculator.calculate(flightInformation));
-//                    passengerFound = true;
-//                }
-//                case ECONOMY_CLASS -> {
-//                    passenger = new EconomyClassPassenger(passengerPassport, passengerName, passengerAge,
-//                            distanceCalculator.calculate(flightInformation));
-//                    passengerFound = true;
-//                }
-//                default -> {
-//                    System.out.println(PASSENGER_NOT_EXIST);
-//                    return null;
-//                }
-//
-//            }
-//        }
-//        return passenger;
-//    }
+
     public Passenger createPassenger(FlightInformation flightInformation,
                                  Map<PassengerKeyConstants, Object> passengerData) {
 
