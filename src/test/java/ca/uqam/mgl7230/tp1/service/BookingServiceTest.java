@@ -149,7 +149,7 @@ class BookingServiceTest {
     @Test
     void handleEconomicClassPassengerWithAvailabilities(){
         //Given
-        given(flightPassengerService.numberOfEconomyClassSeatsAvailable()).willReturn(8);
+        given(flightPassengerService.numberOfEconomyClassSeatsAvailable()).willReturn(7);
         //When
         bookingService.handleEconomicClassPassenger(passenger);
         //Then

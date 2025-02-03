@@ -129,7 +129,6 @@ class FlightPassengerServiceTest {
         assertThat(flightPassengerService.numberOfBusinessClassSeatsAvailable()).isEqualTo(10);
         assertThat(flightPassengerService.numberOfEconomyClassSeatsAvailable()).isEqualTo(2);
 
-
     }
 
     @Test
