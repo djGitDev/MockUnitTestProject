@@ -8,6 +8,18 @@ variables:
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Définie l'emplacement du cache de la tâche d'analyse
   GIT_DEPTH: "0"  # Indique à git de récupérer toutes les branches du projet, nécessaire pour l'analyse
 
+# Étape de test avec couverture Jacoco
+maven_test:
+  stage: test
+  script:
+    - mvn clean test jacoco:prepare-agent jacoco:report
+  artifacts:
+    when: always
+    paths:
+      - target/site/jacoco/
+    reports:
+      junit: target/surefire-reports/*.xml
+
 # Étape d'analyse SonarQube et Build
 build-sonar:
   stage: build-sonar
@@ -18,19 +30,7 @@ build-sonar:
       - "${SONAR_USER_HOME}/cache"
       - sonar-scanner/
   script: 
-    - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+    - mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
   allow_failure: true
   variables:
     SONAR_SCANNER_PARAMS: "-Dsonar.java.binaries=target/classes -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml"
-
-# Étape de test avec couverture Jacoco
-maven_test:
-  stage: test
-  script:
-    - mvn test jacoco:report
-  artifacts:
-    when: always
-    paths:
-      - target/site/jacoco/
-    reports:
-      junit: target/surefire-reports/*.xml
