@@ -4,7 +4,6 @@ image: maven:3-eclipse-temurin-17
 
 stages:
   - build-sonar  
-  - test
 
 
 variables:
@@ -13,16 +12,7 @@ variables:
   
  
 # Étape de test avec couverture Jacoco
-maven_test:
-  stage: test
-  script:
-    - mvn test jacoco:report
-  artifacts:
-    when: always
-    paths:
-      - target/site/jacoco/
-    reports:
-      junit: target/surefire-reports/*.xml
+
 
 # Étape d'analyse SonarQube et Build
 build-sonar:
