@@ -5,7 +5,7 @@ stages:
 
 variables:
 
-  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository -XX:MaxRAMPercentage=75.0 -XX:ParallelGCThreads=2"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository -Xmx1024m -Xms512m"
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Définie l'emplacement du cache de la tâche d'analyse
   GIT_DEPTH: "0"  # Indique à git de récupérer toutes les branches du projet, nécessaire pour l'analyse
   SONAR_HOST_URL: "http://ton-serveur-sonarqube:9000"  # Remplace par l'URL de ton serveur SonarQube
