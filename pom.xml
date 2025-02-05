@@ -26,6 +26,9 @@
         <aws-lambda-java-events.version>1.2.0</aws-lambda-java-events.version>
         <aws-lambda-java-core.version>1.2.3</aws-lambda-java-core.version>
         <mockito-all.version>3.11.2</mockito-all.version>
+        <sonar.projectKey>abi_ayad.mohamed_djawad_mgl7230_tp1_c3d9bbb8-08f0-4073-966e-e1791623b06e</sonar.projectKey>
+        <sonar.projectName>MGL7230_TP1</sonar.projectName>
+        <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
     </properties>
 
     <dependencies>
@@ -95,6 +98,7 @@
             <version>5.2.0</version> <!-- Vérifie la dernière version -->
             <scope>test</scope>
         </dependency>
+
 
         <dependency>
             <groupId>org.jacoco</groupId>
