@@ -15,7 +15,7 @@ public class PassengerPromptService {
     private static final String ENTER_PASSPORT = "Enter Passenger passport: ";
     private static final String ENTER_NAME = "Enter Passenger name: ";
     private static final String ENTER_AGE = "Enter Passenger age: ";
-    private static final String ENTER_TYPE = "Enter a passenger type: write first for First Class, " +
+    private static final String ENTER_CLASS = "Enter a passenger type: write first for First Class, " +
             "business for Business Class or " +
             "economy for Economy Class";
 
@@ -26,7 +26,7 @@ public class PassengerPromptService {
         String passengerName = scanner.nextLine();
         logger.info(ENTER_AGE);
         int passengerAge = Integer.parseInt(scanner.nextLine());
-        logger.info(ENTER_TYPE);
+        logger.info(ENTER_CLASS);
         String passengerType = scanner.nextLine();
 
         PassengerClass passengerClass = getPassengerClass(passengerType);

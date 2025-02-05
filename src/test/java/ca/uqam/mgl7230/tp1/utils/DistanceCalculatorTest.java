@@ -62,7 +62,6 @@ class DistanceCalculatorTest {
 
     @Test
     void calculateLongDistanceTest() {
-
         //given
         given(flightInformation.getLatDestination()).willReturn(SYDNEY_LAT);
         given(flightInformation.getLonDestination()).willReturn(SYDNEY_LON);

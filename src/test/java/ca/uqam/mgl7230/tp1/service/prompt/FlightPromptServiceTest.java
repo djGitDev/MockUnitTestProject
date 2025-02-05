@@ -1,6 +1,8 @@
 package ca.uqam.mgl7230.tp1.service.prompt;
 
+import ca.uqam.mgl7230.tp1.Initializer;
 import ca.uqam.mgl7230.tp1.adapter.flight.FlightCatalog;
+import ca.uqam.mgl7230.tp1.exception.FlightNotFoundException;
 import ca.uqam.mgl7230.tp1.model.flight.FlightInformation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -8,9 +10,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -48,9 +52,9 @@ class FlightPromptServiceTest {
         given(scanner.nextLine()).willReturn(INVALID_NUMBER);
         given(flightCatalog.getFlightInformation(INVALID_NUMBER)).willReturn(null);
         //when
-        FlightInformation actualResult = flightPromptService.getFlightInformation(scanner);
-        //then
-        verify(flightCatalog).getFlightInformation(INVALID_NUMBER);  // Vérifie l'appel
-        assertThat(actualResult).isNull();
+        assertThrows(FlightNotFoundException.class, () -> {
+            flightPromptService.getFlightInformation(scanner);
+        });
+
     }
 }

@@ -1,6 +1,7 @@
 package ca.uqam.mgl7230.tp1.service.prompt;
 
 import ca.uqam.mgl7230.tp1.adapter.flight.FlightCatalog;
+import ca.uqam.mgl7230.tp1.exception.FlightNotFoundException;
 import ca.uqam.mgl7230.tp1.model.flight.FlightInformation;
 
 import java.util.Scanner;
@@ -24,6 +25,7 @@ public class FlightPromptService {
         FlightInformation flight = flightCatalog.getFlightInformation(flightNumber);
         if (flight == null) {
             logger.warning(NO_FLIGHT_MATCH);
+            throw new FlightNotFoundException();
         }
         return flight;
     }

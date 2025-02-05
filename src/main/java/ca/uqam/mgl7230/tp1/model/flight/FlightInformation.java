@@ -10,6 +10,7 @@ public class FlightInformation {
     private Double latDestination;
     private Double lonDestination;
     private PlaneType planeType;
+    private FlightStatus flightStatus;
 
     public FlightInformation(String flightNumber, Double latSource, Double lonSource, Double latDestination, Double lonDestination, PlaneType planeType) {
         this.flightNumber = flightNumber;
@@ -18,6 +19,7 @@ public class FlightInformation {
         this.latDestination = latDestination;
         this.lonDestination = lonDestination;
         this.planeType = planeType;
+        flightStatus = FlightStatus.OPEN;
     }
 
     public String getFlightNumber() {
@@ -42,5 +44,12 @@ public class FlightInformation {
 
     public PlaneType getPlaneType() {
         return planeType;
+    }
+
+    public FlightStatus getFlightStatus() {
+        return flightStatus;
+    }
+    public void setFlightStatus(FlightStatus flightStatus) {
+        this.flightStatus = flightStatus;
     }
 }
