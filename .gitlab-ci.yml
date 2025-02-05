@@ -1,7 +1,8 @@
 stages:
+  - sonar
   - build
   - test
-  - sonar
+
 
 variables:
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
