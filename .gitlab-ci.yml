@@ -1,8 +1,8 @@
 image: maven:3-eclipse-temurin-17
 
 stages:
-  - build-sonar
   - test
+  - build-sonar
 
 variables:
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Définie l'emplacement du cache de la tâche d'analyse
