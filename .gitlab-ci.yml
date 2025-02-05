@@ -1,6 +1,6 @@
 stages:
-  - sonar
   - build
+  - sonar
   - test
 
 
