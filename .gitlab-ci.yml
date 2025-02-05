@@ -20,6 +20,8 @@ build-sonar:
   script: 
     - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
   allow_failure: true
+  variables:
+    SONAR_SCANNER_PARAMS: "-Dsonar.java.binaries=target/classes -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml"
 
 # Étape de test avec couverture Jacoco
 maven_test:
