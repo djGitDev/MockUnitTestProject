@@ -38,7 +38,7 @@ maven_test:
 # Étape d'analyse SonarQube
 sonarqube_scan:
   stage: sonar
-  image: maven:3-eclipse-temurin-17  # Utilisation de l'image recommandée pour SonarQube
+  image: maven:3.9.6-eclipse-temurin-17  # Utilisation de l'image recommandée pour SonarQube
   script:
     - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=flight-booking-example -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
   cache:
