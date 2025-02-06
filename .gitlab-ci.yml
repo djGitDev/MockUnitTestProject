@@ -16,7 +16,7 @@ build-sonar:
     key: "sonar-cache-$CI_COMMIT_REF_SLUG"
     paths:
       - "${SONAR_USER_HOME}/cache"
-      - /builds/abi_ayad.mohamed_djawad/mgl7230_tp1/sonar-scanner/
+      - sonar-scanner/
       
   script: 
         - mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml 
