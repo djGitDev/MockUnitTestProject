@@ -15,7 +15,7 @@ test:
     - mvn clean test  # Exécute les tests unitaires (génère aussi les rapports JaCoCo)
   artifacts:
     paths:
-      - builds/abi_ayad.mohamed_djawad/mgl7230_tp1
+      - builds/abi_ayad.mohamed_djawad/mgl7230_tp1/
     expire_in: 1 week
 # Stage pour SonarQube
 build-sonar:
