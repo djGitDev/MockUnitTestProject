@@ -5,8 +5,8 @@ variables:
   GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
 
 stages:
-  - test
   - build-sonar
+  - test
 
 # Stage pour l'exécution des tests
 test:
