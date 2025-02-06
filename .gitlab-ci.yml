@@ -13,6 +13,7 @@ test:
   stage: test
   script:
     - mvn clean test  jacoco:report
+    - ls -l
   # Exécute les tests unitaires (génère aussi les rapports JaCoCo)
   artifacts:
     when: always
@@ -32,6 +33,7 @@ build-sonar:
       
   script: 
     - mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.coverage.jacoco.xmlReportPaths=/builds/abi_ayad.mohamed_djawad/mgl7230_tp1/target/site/jacoco/jacoco.xml 
+    - ls -l
 
   allow_failure: true 
 
