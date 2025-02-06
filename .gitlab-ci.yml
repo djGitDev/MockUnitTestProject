@@ -14,9 +14,10 @@ test:
   script:
     - mvn clean test  # Exécute les tests unitaires (génère aussi les rapports JaCoCo)
   artifacts:
-    paths:
-      - builds/abi_ayad.mohamed_djawad/mgl7230_tp1/target/
-    expire_in: 1 week
+    when: always
+    reports:
+      junit: /builds/abi_ayad.mohamed_djawad/annotationprocesstraceable/demo/target/surefire-reports/*.xml
+
 # Stage pour SonarQube
 build-sonar:
   stage: build-sonar
