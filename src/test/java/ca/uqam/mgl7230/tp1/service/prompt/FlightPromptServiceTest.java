@@ -1,6 +1,5 @@
 package ca.uqam.mgl7230.tp1.service.prompt;
 
-import ca.uqam.mgl7230.tp1.Initializer;
 import ca.uqam.mgl7230.tp1.adapter.flight.FlightCatalog;
 import ca.uqam.mgl7230.tp1.exception.FlightNotFoundException;
 import ca.uqam.mgl7230.tp1.model.flight.FlightInformation;
@@ -10,7 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

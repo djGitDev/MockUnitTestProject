@@ -9,9 +9,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
@@ -33,6 +35,18 @@ class ApplicationTest {
         ) {
             app.main(new String[]{});
             mockedRunner.verify(() -> Runner.runApp(any(), any(), any(), any()));
+        }
+    }
+
+    @Test
+    void testCreateFileFail() {
+        try (MockedConstruction<FileWriter> mockFileWriter = Mockito.mockConstruction(FileWriter.class,
+                (mock, context) -> {
+                    Mockito.doThrow(new IOException("Failed to create file")).when(mock).flush();
+                })) {
+            assertThrows(IOException.class, () -> {
+                Application.main(new String[]{});
+            });
         }
     }
 }
