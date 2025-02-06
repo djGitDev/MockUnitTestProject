@@ -18,8 +18,11 @@ public class Runner {
 
     private static final Logger logger = Logger.getLogger(Runner.class.getName());
     private static final String EXIT = "no";
+    private static final String ADD_PASSENGER = "Continue adding passengers to this flight? yes or no";
+    private static final String SEATS = "Seats available: ";
+    private static final String FLIGHT_FULL = "Flight is full ...";
 
-
+    private Runner(){}
 
     public static void runApp(Initializer.Initialize initializer,
                               PassengerService passengerService,
@@ -27,7 +30,7 @@ public class Runner {
                               BookingService bookingService
     ) throws IOException {
 
-        ArrayList<String> PassengersInFlight = new ArrayList();
+        ArrayList<String> passengersInFlight = new ArrayList<>();
         boolean shouldContinue = true;
         while (shouldContinue) {
 
@@ -36,8 +39,8 @@ public class Runner {
             Passenger newPassenger = passengerService.createPassenger(flightInformation, passengerData);
             String passportNumber = newPassenger.getPassport();
 
-            if(!(PassengersInFlight.contains(passportNumber))) {
-                PassengersInFlight.add(passportNumber);
+            if(!(passengersInFlight.contains(passportNumber))) {
+                passengersInFlight.add(passportNumber);
                 bookingService.book(newPassenger, flightInformation);
                 initializer.savePassengerInFlight().save(initializer.file(), newPassenger, initializer.flightNumber());
             }
@@ -46,18 +49,26 @@ public class Runner {
             if(seatsAvailable == 0) {
                 flightInformation.setFlightStatus(FlightStatus.FULL);
             }
-
             if (logger.isLoggable(Level.INFO)) {
-                logger.info("Seats available: " + seatsAvailable);
+                logger.info(SEATS + seatsAvailable);
             }
-            logger.info("Continue adding passengers to this flight? yes or no");
-            String continueChoice = initializer.scanner().nextLine();
-            if (EXIT.equalsIgnoreCase(continueChoice) || flightInformation.getFlightStatus() == FlightStatus.FULL) {
+            if (flightInformation.getFlightStatus() == FlightStatus.FULL) {
+                logger.info(FLIGHT_FULL);
                 shouldContinue = false;
-                initializer.scanner().close();
-                initializer.file().close();
+            } else {
+                logger.info(ADD_PASSENGER);
+                String continueChoice = initializer.scanner().nextLine();
+                if (EXIT.equalsIgnoreCase(continueChoice)) {
+                    shouldContinue = false;
+                }
             }
         }
+        closeResources(initializer);
+    }
+
+    private static void closeResources(Initializer.Initialize initializer) throws IOException {
+        initializer.scanner().close();
+        initializer.file().close();
     }
 
 }

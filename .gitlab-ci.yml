@@ -1,8 +1,8 @@
 image: maven:3-eclipse-temurin-17
 
 variables:
-  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Définit l'emplacement du cache de l'analyse Sonar
-  GIT_DEPTH: "0"  # Permet de récupérer toute l'historique des branches, requis pour l'analyse
+  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar" # Définit l'emplacement du cache de l'analyse Sonar
+  GIT_DEPTH: "0" # Permet de récupérer toute l'historique des branches, requis pour l'analyse
 
 stages:
   - test
@@ -19,8 +19,8 @@ test:
     reports:
       junit: target/surefire-reports/*.xml
     paths:
-      - target/site/jacoco/jacoco.xml  # Ajoute le rapport JaCoCo comme artefact
-    expire_in: 1 week  # Optionnel: conserver l'artefact pour une semaine
+      - target/site/jacoco/jacoco.xml # Ajoute le rapport JaCoCo comme artefact
+    expire_in: 1 week # Optionnel: conserver l'artefact pour une semaine
 
 # Stage pour SonarQube
 build-sonar:
@@ -33,7 +33,3 @@ build-sonar:
   script:
     - mvn  verify sonar:sonar -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
   allow_failure: true
-
-
-
-

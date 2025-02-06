@@ -7,10 +7,9 @@ public abstract class Passenger {
     private String passport;
     private String name;
     private int age;
-    private PassengerClass type;
     private int millagePoints;
 
-    public Passenger(String passport, String name, int age, int millagePoints) {
+    protected Passenger(String passport, String name, int age, int millagePoints) {
         this.passport = passport;
         this.name = name;
         this.age = age;
@@ -22,16 +21,18 @@ public abstract class Passenger {
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (!(obj instanceof Passenger)) {
             return false;
         }
         Passenger passenger = (Passenger) obj;
-        return age == passenger.age &&
-                millagePoints == passenger.millagePoints &&
-                Objects.equals(passport, passenger.passport) &&
-                Objects.equals(name, passenger.name) &&
-                type == passenger.type;
+        return this.hashCode() == passenger.hashCode();
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(passport);
+    }
+
 
     public abstract PassengerClass getType();
 

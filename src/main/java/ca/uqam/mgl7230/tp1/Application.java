@@ -12,15 +12,17 @@ public class Application
 
     private static final Logger logger = Logger.getLogger(Application.class.getName());
     private static final String FILE_NAME = "passengerData.csv";
+    private static final String START = "Service started...";
+    private static final String SUCCES = "Init succes...";
 
     public static void main(String[] args) throws IOException {
 
-        logger.info("Service started...");
+        logger.info(START);
         Initializer.Initialize initializer = Initializer.initialize(FILE_NAME);
         PassengerService passengerService = new PassengerService(initializer.distanceCalculator());
         PassengerPromptService passengerPromptService = new PassengerPromptService();
         BookingService bookingService = new BookingService(initializer.flightPassengerService(), passengerService);
-        logger.info("Init succes...");
+        logger.info(SUCCES);
         Runner.runApp(initializer,passengerService,passengerPromptService,bookingService);
     }
 }
