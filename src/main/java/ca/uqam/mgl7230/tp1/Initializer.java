@@ -16,6 +16,8 @@ import java.util.Scanner;
 public class Initializer {
 
 
+    private static final String FILE_ERROR = "Failed to create file 'passengerData.csv' during initialization. Please check file permissions and disk space.";
+
     public static Initialize initialize(String fileName) throws IOException {
         DistanceCalculator distanceCalculator = new DistanceCalculator();
         Scanner scanner = new Scanner(System.in);
@@ -31,8 +33,7 @@ public class Initializer {
             file.flush();
             return new Initialize(distanceCalculator, scanner, flightCatalog, file, savePassengerInFlight, flightNumber, flightPassengerService);
         } catch (IOException e) {
-            String errorMessage = "Failed to create file 'passengerData.csv' during initialization. Please check file permissions and disk space.";
-            throw new IOException(errorMessage, e);
+            throw new IOException(FILE_ERROR, e);
         }
     }
 

@@ -2,8 +2,6 @@ package ca.uqam.mgl7230.tp1.config;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -20,7 +18,7 @@ class FileWriterProviderTest {
     }
 
     @Test
-    void testInitialize_Success() throws IOException {
+    void testInitialize_Success()  {
         FileWriter actualResult = fileProvider.createFile("passengerData.csv");
         assertNotNull(actualResult);
     }
