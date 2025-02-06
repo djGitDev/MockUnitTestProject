@@ -12,8 +12,8 @@ stages:
 test:
   stage: test
   script:
-    - mvn clean test  jacoco:report
-  # Exécute les tests unitaires (génère aussi les rapports JaCoCo)
+    - mvn clean test jacoco:report jacoco:report-integration jacoco:prepare-agent
+    - ls -l target/site/jacoco/  # Vérifier que jacoco.xml est bien généré
   artifacts:
     when: always
     reports:
@@ -22,16 +22,12 @@ test:
 # Stage pour SonarQube
 build-sonar:
   stage: build-sonar
-  
   cache:
     policy: pull-push
     key: "sonar-cache-$CI_COMMIT_REF_SLUG"
     paths:
       - "${SONAR_USER_HOME}/cache"
-      - sonar-scanner/
-      
   script: 
-    - mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.coverage.jacoco.xmlReportPaths=/builds/abi_ayad.mohamed_djawad/mgl7230_tp1/target/site/jacoco/jacoco.xml 
-
-  allow_failure: true
+    - mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+        -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
