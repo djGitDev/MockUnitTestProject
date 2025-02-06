@@ -16,7 +16,7 @@ test:
   artifacts:
     when: always
     reports:
-      junit: /builds/abi_ayad.mohamed_djawad/MGL7230_TP1/demo/target/surefire-reports/*.xml
+      junit: target/surefire-reports/*.xml
 
 # Stage pour SonarQube
 build-sonar:
