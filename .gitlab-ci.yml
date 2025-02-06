@@ -33,7 +33,7 @@ build-sonar:
       - sonar-scanner/
       
   script: 
-    - mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.coverage.jacoco.xmlReportPaths=/builds/abi_ayad.mohamed_djawad/mgl7230_tp1/target/surefire-reports/*.xml
+    - mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar 
     - cd target/site
     - ls -l
 
