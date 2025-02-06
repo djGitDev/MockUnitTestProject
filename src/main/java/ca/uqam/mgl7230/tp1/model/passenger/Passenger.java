@@ -1,5 +1,7 @@
 package ca.uqam.mgl7230.tp1.model.passenger;
 
+import java.util.Objects;
+
 public abstract class Passenger {
 
     private String passport;
@@ -13,6 +15,22 @@ public abstract class Passenger {
         this.name = name;
         this.age = age;
         this.millagePoints = millagePoints;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Passenger passenger = (Passenger) obj;
+        return age == passenger.age &&
+                millagePoints == passenger.millagePoints &&
+                Objects.equals(passport, passenger.passport) &&
+                Objects.equals(name, passenger.name) &&
+                type == passenger.type;
     }
 
     public abstract PassengerClass getType();

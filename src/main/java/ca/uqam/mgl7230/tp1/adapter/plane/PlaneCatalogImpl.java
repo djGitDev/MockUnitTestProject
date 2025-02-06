@@ -3,12 +3,12 @@ package ca.uqam.mgl7230.tp1.adapter.plane;
 import ca.uqam.mgl7230.tp1.model.plane.PlaneInformation;
 import ca.uqam.mgl7230.tp1.model.plane.PlaneType;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 public class PlaneCatalogImpl implements PlaneCatalog {
 
-    private Map<PlaneType, PlaneInformation> planeMap = new HashMap<>();
+    private Map<PlaneType, PlaneInformation> planeMap = new EnumMap<>(PlaneType.class);
 
     public PlaneCatalogImpl() {
         planeMap.put(PlaneType.BOEING, new PlaneInformation(PlaneType.BOEING, 2, 5, 12));
