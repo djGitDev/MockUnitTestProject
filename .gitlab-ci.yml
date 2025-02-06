@@ -12,7 +12,8 @@ stages:
 test:
   stage: test
   script:
-    - mvn clean test  # Exécute les tests unitaires (génère aussi les rapports JaCoCo)
+    - mvn clean test  jacoco:report
+  # Exécute les tests unitaires (génère aussi les rapports JaCoCo)
   artifacts:
     when: always
     reports:
