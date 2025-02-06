@@ -20,6 +20,6 @@ build-sonar:
       - sonar-scanner/
       
   script: 
-    - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+    - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
   allow_failure: true
 
