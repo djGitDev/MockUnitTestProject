@@ -34,3 +34,4 @@ build-sonar:
   allow_failure: true
   variables:
     SONAR_SCANNER_PARAMS: "-Dsonar.java.binaries=target/classes -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml"
+    
