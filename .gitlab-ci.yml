@@ -25,7 +25,7 @@ build-test:
 analyse:
   stage: analyse
   script:
-    - mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+    - mvn -e org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
   variables:
     SONAR_SCANNER_PARAMS: "-Dsonar.java.binaries=target/classes -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml"
   cache:
