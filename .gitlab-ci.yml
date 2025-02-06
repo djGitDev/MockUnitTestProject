@@ -18,6 +18,7 @@ test:
     when: always
     reports:
       junit: target/surefire-reports/*.xml
+
     paths:
       - target/site/jacoco/jacoco.xml # Ajoute le rapport JaCoCo comme artefact
     expire_in: 1 week # Optionnel: conserver l'artefact pour une semaine
@@ -31,5 +32,5 @@ build-sonar:
     paths:
       - "${SONAR_USER_HOME}/cache"
   script:
-    - mvn  verify sonar:sonar -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+    - mvn verify sonar:sonar -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
   allow_failure: true
