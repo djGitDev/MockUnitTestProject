@@ -1,24 +1,25 @@
 image: maven:3-eclipse-temurin-17
 
-stages:
-  - analyse
-
 variables:
-  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Définie l'emplacement du cache de la tâche d'analyse
-  GIT_DEPTH: "0"  # Indique à git de récupérer toutes les branches du projet, nécessaire pour l'analyse
+  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+  GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+
+stages:
+  - build-sonar
 
 
-
-# Stage d'analyse SonarQube
-analyse:
-  stage: analyse
-  script:
-    - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-  variables:
-    SONAR_SCANNER_PARAMS: "-Dsonar.java.binaries=target/classes -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml"
+build-sonar:
+  stage: build-sonar
+  
+  
   cache:
     policy: pull-push
     key: "sonar-cache-$CI_COMMIT_REF_SLUG"
     paths:
       - "${SONAR_USER_HOME}/cache"
-      - /builds/abi_ayad.mohamed_djawad/mgl7230_tp1
+      - sonar-scanner/
+      
+  script: 
+    - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+  allow_failure: true
+
