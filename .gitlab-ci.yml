@@ -21,4 +21,4 @@ analyse:
     key: "sonar-cache-$CI_COMMIT_REF_SLUG"
     paths:
       - "${SONAR_USER_HOME}/cache"
-      - sonar-scanner/
+      - /builds/abi_ayad.mohamed_djawad/mgl7230_tp1
