@@ -28,5 +28,5 @@ build-sonar:
     paths:
       - "${SONAR_USER_HOME}/cache"
   script: 
-      - mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar         -Dsonar coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+      - mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
 
