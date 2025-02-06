@@ -71,9 +71,8 @@ class RunnerTest {
     }
 
     @AfterEach
-    void tearDown() throws IOException {
+    void tearDown()  {
         verify(scanner).close();
-        verify(file).close();
     }
 
 

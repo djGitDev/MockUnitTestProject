@@ -66,9 +66,8 @@ public class Runner {
         closeResources(initializer);
     }
 
-    private static void closeResources(Initializer.Initialize initializer) throws IOException {
+    private static void closeResources(Initializer.Initialize initializer) {
         initializer.scanner().close();
-        initializer.file().close();
     }
 
 }
