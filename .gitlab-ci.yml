@@ -1,25 +1,19 @@
 image: maven:3-eclipse-temurin-17
 
 stages:
-  - build
-  - test
+  - build-test
   - analyse
 
 variables:
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Définie l'emplacement du cache de la tâche d'analyse
   GIT_DEPTH: "0"  # Indique à git de récupérer toutes les branches du projet, nécessaire pour l'analyse
 
-# Stage de build : Compilation du projet
-build:
-  stage: build
+# Stage de build et test : Compilation et exécution des tests
+build-test:
+  stage: build-test
   script:
-    - mvn clean install -DskipTests
-
-# Stage de test : Exécution des tests et génération du rapport Jacoco
-test:
-  stage: test
-  script:
-    - mvn test jacoco:prepare-agent jacoco:report
+    - mvn clean install 
+    - mvn test jacoco:prepare-agent jacoco:report  # Tests et génération du rapport Jacoco
   artifacts:
     when: always
     paths:
@@ -27,7 +21,7 @@ test:
     reports:
       junit: target/surefire-reports/*.xml
 
-# Stage d'analyse : Analyse SonarQube
+# Stage d'analyse SonarQube
 analyse:
   stage: analyse
   script:
