@@ -34,7 +34,7 @@ build-sonar:
       
   script: 
     - mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar 
-    - cd target/site
+    - cd target
     - ls -l
 
   allow_failure: true 
