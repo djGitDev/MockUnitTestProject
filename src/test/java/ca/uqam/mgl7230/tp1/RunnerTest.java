@@ -107,7 +107,7 @@ class RunnerTest {
     }
 
     @Test
-    void samePassengerBookTwiceInSameFlight() throws IOException {
+    void samePassengerCantBookTwiceInSameFlight() throws IOException {
         // Given
         given(flightPassengerService.numberOfTotalSeatsAvailable()).willReturn(10);
         given(flightInformation.getFlightStatus()).willReturn(FlightStatus.OPEN);
@@ -128,7 +128,6 @@ class RunnerTest {
         given(flightInformation.getFlightStatus()).willReturn(FlightStatus.FULL);
         given(flightPassengerService.numberOfTotalSeatsAvailable()).willReturn(0);
         given(passenger.getPassport()).willReturn(PASSPORT_NUMBER1,PASSPORT_NUMBER2);
-        given(scanner.nextLine()).willReturn(CONTINUE);
         // When
         Runner.runApp(initializer, passengerService, passengerPromptService,bookingService);
         //Then
