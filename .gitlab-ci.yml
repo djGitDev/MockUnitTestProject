@@ -13,7 +13,10 @@ test:
   stage: test
   script:
     - mvn clean test  # Exécute les tests unitaires (génère aussi les rapports JaCoCo)
-
+  artifacts:
+    paths:
+      - target/site/jacoco/jacoco.xml
+    expire_in: 1 week
 # Stage pour SonarQube
 build-sonar:
   stage: build-sonar
