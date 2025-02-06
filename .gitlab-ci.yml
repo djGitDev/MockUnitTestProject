@@ -1,18 +1,25 @@
 image: maven:3-eclipse-temurin-17
 
 stages:
+  - build
   - test
-  - build-sonar
+  - analyse
 
 variables:
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Définie l'emplacement du cache de la tâche d'analyse
   GIT_DEPTH: "0"  # Indique à git de récupérer toutes les branches du projet, nécessaire pour l'analyse
 
-# Étape de test avec couverture Jacoco
-maven_test:
+# Stage de build : Compilation du projet
+build:
+  stage: build
+  script:
+    - mvn clean install -DskipTests
+
+# Stage de test : Exécution des tests et génération du rapport Jacoco
+test:
   stage: test
   script:
-    - mvn clean test jacoco:prepare-agent jacoco:report
+    - mvn test jacoco:prepare-agent jacoco:report
   artifacts:
     when: always
     paths:
@@ -20,18 +27,16 @@ maven_test:
     reports:
       junit: target/surefire-reports/*.xml
 
-# Étape d'analyse SonarQube et Build
-build-sonar:
-  stage: build-sonar
+# Stage d'analyse : Analyse SonarQube
+analyse:
+  stage: analyse
+  script:
+    - mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+  variables:
+    SONAR_SCANNER_PARAMS: "-Dsonar.java.binaries=target/classes -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml"
   cache:
     policy: pull-push
     key: "sonar-cache-$CI_COMMIT_REF_SLUG"
     paths:
       - "${SONAR_USER_HOME}/cache"
       - sonar-scanner/
-  script: 
-    - mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-  allow_failure: true
-  variables:
-    SONAR_SCANNER_PARAMS: "-Dsonar.java.binaries=target/classes -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml"
-    
