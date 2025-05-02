@@ -40,7 +40,7 @@ jobs:
 
     - name: Run SonarQube analysis
   
-      run: mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+      run: mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
         -Dsonar.projectKey=djGitDev_MockUnitTestProject \
         -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
         -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
