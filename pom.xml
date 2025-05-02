@@ -27,6 +27,8 @@
         <aws-lambda-java-core.version>1.2.3</aws-lambda-java-core.version>
         <mockito-all.version>3.11.2</mockito-all.version>
         <sonar.projectKey>djGitDev_MockUnitTestProject</sonar.projectKey>
+        <sonar.organization>djgitdev</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.projectName>MockUnitTestProject</sonar.projectName>
         <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
     </properties>
