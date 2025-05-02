@@ -39,6 +39,10 @@ jobs:
 
 
     - name: Run SonarQube analysis
-      run: mvn verify sonar:sonar -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
+  
+      run: mvn verify sonar:sonar -Dsonar.projectKey=djGitDev_MockUnitTestProject \
+        -Dsonar.organization=djgitdev   -Dsonar.host.url=https://sonarcloud.io \
+        -Dsonar.login=${{ secrets.SONAR_TOKEN }} \   
+        -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
